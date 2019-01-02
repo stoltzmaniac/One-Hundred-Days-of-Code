@@ -8,6 +8,7 @@ python:
 services:
   - postgresql
 install:
+  - cd onehundreddaysofcode
   - pip install -r onehundreddaysofcode/requirements/dev.txt
   - nvm install 6.10
   - nvm use 6.10
@@ -17,11 +18,11 @@ before_script:
   - psql -c 'create database onehundreddaysofcode;' -U postgres
   - npm run lint
   - npm run build
-  - flask lint
-script:
   - flask db init
   - flask db migrate
   - flask db upgrade
+  - flask lint
+script:
   - flask test
 after_success:
   - coveralls
