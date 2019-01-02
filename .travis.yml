@@ -17,6 +17,11 @@ before_script:
   - npm run lint
   - npm run build
   - flask lint
-script: flask test
+script:
+  - cd onehundreddaysofcode
+  - flask db init
+  - flask db migrate
+  - flask db upgrade
+  - flask test
 after_success:
   - coveralls
