@@ -14,9 +14,6 @@ install:
   - npm install
 before_script:
   - psql -c 'create database onehundreddaysofcode;' -U postgres
-  - flask db init
-  - flask db migrate
-  - flask db upgrade
   - npm run lint
   - npm run build
   - flask lint
