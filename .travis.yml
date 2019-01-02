@@ -17,3 +17,5 @@ before_script:
   - npm run build
   - flask lint
 script: flask test
+after_success:
+  - coveralls
