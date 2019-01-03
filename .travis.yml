@@ -16,11 +16,11 @@ install:
 before_script:
   - cd onehundreddaysofcode
   - psql -c 'create database onehundreddaysofcode;' -U postgres
-  - npm run lint
-  - npm run build
   - flask db init
   - flask db migrate
   - flask db upgrade
+  - npm run lint
+  - npm run build
   - flask lint
 script:
   - flask test
