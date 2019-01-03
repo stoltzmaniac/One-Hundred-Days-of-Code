@@ -1,8 +1,6 @@
-# Config file for automatic testing at travis-ci.org
+# Config file for automatic testing at travis-ci.org (all env variables set within Travis settings)
 sudo: false  # http://docs.travis-ci.com/user/migrating-from-legacy/
 language: python
-env:
-- FLASK_APP=onehundreddaysofcode/autoapp.py FLASK_DEBUG=1
 python:
   - 3.6
 services:
@@ -18,6 +16,7 @@ before_script:
   - psql -c 'create database onehundreddaysofcode;' -U postgres
   - npm run lint
   - npm run build
+  - flask lint
 script:
   - flask test
 after_success:
