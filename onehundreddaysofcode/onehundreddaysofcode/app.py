@@ -3,6 +3,7 @@
 from flask import Flask, render_template
 
 from onehundreddaysofcode import commands, public, user
+from onehundreddaysofcode.utils import JSONEncoder
 from onehundreddaysofcode.extensions import (
     bcrypt,
     cache,
@@ -23,6 +24,7 @@ def create_app(config_object="onehundreddaysofcode.settings"):
     """
     app = Flask(__name__.split(".")[0])
     app.config.from_object(config_object)
+    app.json_encoder = JSONEncoder
     register_extensions(app)
     register_blueprints(app)
     register_errorhandlers(app)
