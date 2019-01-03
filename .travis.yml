@@ -7,12 +7,14 @@ services:
   - postgresql
 install:
   - cd onehundreddaysofcode
+  - ls
   - pip install -r requirements/dev.txt
   - nvm install 6.10
   - nvm use 6.10
   - npm install
 before_script:
   - cd onehundreddaysofcode
+  - ls
   - psql -c 'create database onehundreddaysofcode;' -U postgres
   - npm run lint
   - npm run build
