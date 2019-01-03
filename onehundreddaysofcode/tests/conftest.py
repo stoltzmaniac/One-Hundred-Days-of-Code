@@ -6,6 +6,7 @@ from webtest import TestApp
 
 from onehundreddaysofcode.app import create_app
 from onehundreddaysofcode.database import db as _db
+from onehundreddaysofcode.database import mdb as _mdb
 
 from .factories import UserFactory
 
