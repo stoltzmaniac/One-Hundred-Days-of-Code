@@ -18,7 +18,6 @@ before_script:
   - psql -c 'create database onehundreddaysofcode;' -U postgres
   - npm run lint
   - npm run build
-  - flask lint
 script:
   - flask test
 after_success:
