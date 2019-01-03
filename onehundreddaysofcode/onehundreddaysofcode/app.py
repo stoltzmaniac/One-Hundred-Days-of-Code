@@ -12,6 +12,7 @@ from onehundreddaysofcode.extensions import (
     login_manager,
     migrate,
     webpack,
+    mdb,
 )
 
 
@@ -35,6 +36,7 @@ def register_extensions(app):
     bcrypt.init_app(app)
     cache.init_app(app)
     db.init_app(app)
+    mdb.init_app(app)
     csrf_protect.init_app(app)
     login_manager.init_app(app)
     debug_toolbar.init_app(app)

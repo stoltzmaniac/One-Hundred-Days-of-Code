@@ -5,6 +5,7 @@ python:
   - 3.6
 services:
   - postgresql
+  - mongodb
 install:
   - cd onehundreddaysofcode
   - pip install -r requirements/dev.txt
