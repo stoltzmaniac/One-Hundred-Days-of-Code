@@ -9,7 +9,7 @@ services:
   - postgresql
 install:
   - cd onehundreddaysofcode
-  - pip install -r onehundreddaysofcode/requirements/dev.txt
+  - pip install -r requirements/dev.txt
   - nvm install 6.10
   - nvm use 6.10
   - npm install
