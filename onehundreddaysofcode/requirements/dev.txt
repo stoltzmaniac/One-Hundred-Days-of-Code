@@ -1,10 +1,12 @@
 alembic==1.0.5
+appdirs==1.4.3
 arrow==0.12.1
 atomicwrites==1.2.1
 attrs==18.2.0
 bcrypt==3.1.5
 beautifulsoup4==4.7.0
 binaryornot==0.4.4
+black==18.9b0
 blinker==1.4
 certifi==2018.11.29
 cffi==1.11.5
@@ -65,6 +67,7 @@ soupsieve==1.6.1
 SQLAlchemy==1.2.11
 testfixtures==6.4.1
 text-unidecode==1.2
+toml==0.10.0
 urllib3==1.24.1
 waitress==1.1.0
 WebOb==1.8.4

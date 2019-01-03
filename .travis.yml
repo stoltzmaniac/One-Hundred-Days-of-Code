@@ -12,11 +12,11 @@ install:
   - nvm use 6.10
   - npm install
 before_script:
+  - black onehundreddaysofcode
   - cd onehundreddaysofcode
   - psql -c 'create database onehundreddaysofcode;' -U postgres
   - npm run lint
   - npm run build
-  - flask lint
 script:
   - flask test
 after_success:

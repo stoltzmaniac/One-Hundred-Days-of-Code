@@ -13,7 +13,7 @@ from .factories import UserFactory
 @pytest.fixture
 def app():
     """An application for the tests."""
-    _app = create_app('tests.settings')
+    _app = create_app("tests.settings")
     ctx = _app.test_request_context()
     ctx.push()
 
@@ -45,6 +45,6 @@ def db(app):
 @pytest.fixture
 def user(db):
     """A user for the tests."""
-    user = UserFactory(password='myprecious')
+    user = UserFactory(password="myprecious")
     db.session.commit()
     return user
