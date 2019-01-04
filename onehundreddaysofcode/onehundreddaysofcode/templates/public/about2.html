@@ -1,0 +1,23 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-5">About</h1>
+
+    <form id="randomDataForm" class="form" method="POST" action="" role="form">
+        {{ myform.csrf_token }}
+        <div class="form-group">
+            {{ myform.username.label }}
+            {{ myform.username(placeholder="Username", class_="form-control")}}
+        </div>
+        <div class="form-group">
+            {{ myform.text.label }}
+            {{ myform.text(placeholder="Text", class_="form-control")}}
+        </div>
+        <p><input class="btn btn-primary" type="submit" value="Submit"></p>
+    </form>
+
+
+</div>
+{% endblock %}

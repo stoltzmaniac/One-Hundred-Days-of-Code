@@ -9,6 +9,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_webpack import Webpack
 from flask_wtf.csrf import CSRFProtect
 from flask_pymongo import PyMongo
+from flask_mongoengine import MongoEngine
+
 
 bcrypt = Bcrypt()
 csrf_protect = CSRFProtect()
@@ -19,3 +21,4 @@ cache = Cache()
 debug_toolbar = DebugToolbarExtension()
 webpack = Webpack()
 mdb = PyMongo()
+medb = MongoEngine()
