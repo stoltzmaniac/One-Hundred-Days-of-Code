@@ -21,7 +21,7 @@
     {% if output %}
     <ul id="tweets">
         {% for o in output %}
-            <li>{{ o }}</li>
+            <li>{{ o['text'] }}</li>
         {% endfor %}
     </ul>
     {% endif %}
