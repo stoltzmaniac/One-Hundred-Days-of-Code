@@ -74,20 +74,7 @@ def about():
     return render_template("public/about.html", form=form)
 
 
-@csrf_protect.exempt
-@blueprint.route("/mongo", methods=["GET", "POST"])
-def mongo():
-    """Testing mongo"""
-    if request.method == "GET":
-        data = mdb.db.songs.find_one({"name": "hello"})
-        return jsonify(data), 200
-    if request.method == "POST":
-        data = request.data
-        d = json.loads(data.decode('utf-8'))
-        mdb.db.songs.insert_one(d)
-        return jsonify({'ok': True, 'message': 'Song created successfully!'}), 200
-
-
+# TODO: make this an endpoint, will respond to form POST request only (or maybe ajax)
 @blueprint.route("/twitter/<query>/<count>", methods=["GET", "POST"])
 @login_required
 def twitter(query, count):
@@ -103,6 +90,7 @@ def twitter(query, count):
     return jsonify({'yes': 'did it'})
 
 
+# TODO: make a better visualization from this
 @blueprint.route("/twitter/visualize")
 @login_required
 def twitter_visualize():
@@ -115,8 +103,8 @@ def twitter_visualize():
 
 @blueprint.route("/add_random_data", methods=["GET", "POST"])
 @login_required
-def twitter_lookup():
-    """Home page."""
+def add_random_data():
+    """This is just an example of how you can add random data using mongoengine"""
     form = RandomForm(request.form)
     # Handle logging in
     if request.method == "POST":
