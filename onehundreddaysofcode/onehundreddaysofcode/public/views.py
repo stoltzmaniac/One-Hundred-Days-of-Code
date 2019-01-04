@@ -11,7 +11,7 @@ from onehundreddaysofcode.extensions import login_manager
 from onehundreddaysofcode.public.forms import LoginForm
 from onehundreddaysofcode.user.forms import RegisterForm
 from onehundreddaysofcode.user.models import User
-from onehundreddaysofcode.utils import flash_errors
+from onehundreddaysofcode.utils import flash_errors, twtr
 
 blueprint = Blueprint("public", __name__, static_folder="../static")
 
@@ -84,3 +84,14 @@ def mongo():
         d = json.loads(data.decode('utf-8'))
         mdb.db.songs.insert_one(d)
         return jsonify({'ok': True, 'message': 'Song created successfully!'}), 200
+
+
+@blueprint.route("/twitter/<query>/<count>", methods=["GET"])
+def twitter(query, count):
+    """Testing twitter"""
+    tweets = mdb.db.tweets
+    search_query = f"q={query}&count={str(count)}"
+    results = twtr.GetSearch(raw_query=search_query)
+    for r in results:
+        tweets.insert_one(r.AsDict())
+    return jsonify({'yes': 'did it'})

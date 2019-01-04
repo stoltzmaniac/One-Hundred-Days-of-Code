@@ -22,3 +22,7 @@ CACHE_TYPE = "simple"  # Can be "memcached", "redis", etc.
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 WEBPACK_MANIFEST_PATH = "webpack/manifest.json"
 MONGO_URI = env.str("MONGO_URI")
+TWTR_CONSUMER_KEY = env.str("TWTR_CONSUMER_KEY")
+TWTR_CONSUMER_SECRET = env.str("TWTR_CONSUMER_SECRET")
+TWTR_TOKEN_KEY = env.str("TWTR_TOKEN_KEY")
+TWTR_TOKEN_SECRET = env.str("TWTR_TOKEN_SECRET")
