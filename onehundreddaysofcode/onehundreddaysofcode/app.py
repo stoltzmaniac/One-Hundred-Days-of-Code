@@ -2,7 +2,7 @@
 """The app module, containing the app factory function."""
 from flask import Flask, render_template
 
-from onehundreddaysofcode import commands, public, user
+from onehundreddaysofcode import commands, public, user, twitter
 from onehundreddaysofcode.utils import JSONEncoder
 from onehundreddaysofcode.extensions import (
     bcrypt,
@@ -53,6 +53,7 @@ def register_blueprints(app):
     """Register Flask blueprints."""
     app.register_blueprint(public.views.blueprint)
     app.register_blueprint(user.views.blueprint)
+    app.register_blueprint(twitter.views.blueprint)
     return None
 
 

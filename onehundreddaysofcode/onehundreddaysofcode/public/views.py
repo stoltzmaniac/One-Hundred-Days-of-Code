@@ -74,33 +74,6 @@ def about():
     return render_template("public/about.html", form=form)
 
 
-# TODO: make this an endpoint, will respond to form POST request only (or maybe ajax)
-@blueprint.route("/twitter/<query>/<count>", methods=["GET", "POST"])
-@login_required
-def twitter(query, count):
-    """Testing twitter"""
-    user_id = str(session['user_id'])
-    tweets = mdb.db.tweets
-    search_query = f"q={query}&count={str(count)}"
-    results = twtr.GetSearch(raw_query=search_query)
-    for r in results:
-        rd = r.AsDict()
-        rd['one_hundred_id'] = user_id
-        tweets.insert_one(rd)
-    return jsonify({'yes': 'did it'})
-
-
-# TODO: make a better visualization from this
-@blueprint.route("/twitter/visualize")
-@login_required
-def twitter_visualize():
-    user_id = str(session['user_id'])
-    tweets = mdb.db.tweets
-    data = tweets.find({'one_hundred_id': user_id})
-    output = [i for i in data]
-    return jsonify(output)
-
-
 @blueprint.route("/add_random_data", methods=["GET", "POST"])
 @login_required
 def add_random_data():
@@ -117,4 +90,4 @@ def add_random_data():
             return jsonify({'yes': 'you did it'})
         else:
             flash_errors(form)
-    return render_template("public/about2.html", myform=form)
+    return render_template("public/add_random_data.html", myform=form)

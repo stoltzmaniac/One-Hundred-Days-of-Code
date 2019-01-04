@@ -1,0 +1,31 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-5">About</h1>
+
+    <form id="randomDataForm" class="form" method="POST" action="" role="form">
+        {{ myform.csrf_token }}
+        <div class="form-group">
+            {{ myform.search_term.label }}
+            {{ myform.search_term(placeholder="Search Term, Username, or Hashtag", class_="form-control")}}
+        </div>
+        <div class="form-group">
+            {{ myform.count.label }}
+            {{ myform.count(placeholder="# of results requested", class_="form-control")}}
+        </div>
+        <p><input class="btn btn-primary" type="submit" value="Submit"></p>
+    </form>
+
+    {% if output %}
+    <ul id="tweets">
+        {% for o in output %}
+            <li>{{ o }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
+</div>
+{% endblock %}
