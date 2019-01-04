@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="mt-5">About</h1>
+    <h1 class="mt-5">Twitter</h1>
 
     <form id="randomDataForm" class="form" method="POST" action="" role="form">
         {{ myform.csrf_token }}
@@ -19,6 +19,8 @@
     </form>
 
     {% if output %}
+    <strong>All historical data you have requested!</strong>
+    <br/>
     <ul id="tweets">
         {% for o in output %}
             <li>{{ o['text'] }}</li>

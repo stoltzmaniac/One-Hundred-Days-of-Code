@@ -31,6 +31,8 @@ def twitter():
             rd = r.AsDict()
             rd['one_hundred_id'] = user_id
             tweets.insert_one(rd)
+        data = tweets.find({'one_hundred_id': user_id})
+        output = [i for i in data]
         return render_template("twitter/index.html", myform=form, output=output)
 
     else:
