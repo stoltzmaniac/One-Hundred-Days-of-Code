@@ -2,6 +2,13 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<!-- Load c3.css -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.12/c3.css" rel="stylesheet">
+
+<!-- Load d3.js and c3.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.12/c3.js"></script>
+
 <div class="container">
     <h1 class="mt-5">Twitter</h1>
 
@@ -19,13 +26,39 @@
     </form>
 
     {% if output %}
-    <strong>All historical data you have requested!</strong>
-    <br/>
-    <ul id="tweets">
-        {% for o in output %}
-            <li>{{ o['text'] }}</li>
-        {% endfor %}
-    </ul>
+        <strong>All historical data you have requested!</strong>
+
+        <br/>
+
+        <div id="chart"></div>
+
+        <script>
+            var chart = c3.generate({
+                data: {
+                    x: 'Date',
+                    columns: [
+                        {{ chart_dates | safe }},
+                        {{ chart_tweets | safe }}
+                    ]
+                },
+                axis : {
+                    x : {
+                        type : 'timeseries',
+                        tick: {
+                            format: function (x) { return x.getHours(); }
+                          //format: '%Y' // format string is also available for timeseries data
+                        }
+                    }
+                }
+            });
+        </script>
+
+        <br/>
+        <ul id="tweets">
+            {% for o in output %}
+                <li>{{ o['text'] }}</li>
+            {% endfor %}
+        </ul>
     {% endif %}
 
 

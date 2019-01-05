@@ -48,7 +48,9 @@ marshmallow==2.17.0
 mccabe==0.6.1
 mongoengine==0.16.3
 more-itertools==5.0.0
+numpy==1.15.4
 oauthlib==2.1.0
+pandas==0.23.4
 pep8-naming==0.7.0
 pluggy==0.8.0
 poyo==0.4.2
@@ -65,6 +67,7 @@ python-dateutil==2.7.5
 python-dotenv==0.10.1
 python-editor==1.0.3
 python-twitter==3.5
+pytz==2018.7
 PyYAML==3.13
 requests==2.21.0
 requests-oauthlib==1.0.0
