@@ -36,19 +36,11 @@
             var chart = c3.generate({
                 data: {
                     x: 'Date',
+                    xFormat: '%H',
                     columns: [
                         {{ chart_dates | safe }},
                         {{ chart_tweets | safe }}
                     ]
-                },
-                axis : {
-                    x : {
-                        type : 'timeseries',
-                        tick: {
-                            format: function (x) { return x.getHours(); }
-                          //format: '%Y' // format string is also available for timeseries data
-                        }
-                    }
                 }
             });
         </script>
