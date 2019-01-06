@@ -4,6 +4,9 @@ import json
 import datetime
 from bson.objectid import ObjectId
 from flask import flash
+import twitter
+
+from onehundreddaysofcode.settings import TWTR_CONSUMER_KEY, TWTR_CONSUMER_SECRET, TWTR_TOKEN_KEY, TWTR_TOKEN_SECRET
 
 
 def flash_errors(form, category="warning"):
@@ -22,3 +25,9 @@ class JSONEncoder(json.JSONEncoder):
         if isinstance(o, datetime.datetime):
             return str(o)
         return json.JSONEncoder.default(self, o)
+
+
+twtr = twitter.Api(consumer_key=TWTR_CONSUMER_KEY,
+                   consumer_secret=TWTR_CONSUMER_SECRET,
+                   access_token_key=TWTR_TOKEN_KEY,
+                   access_token_secret=TWTR_TOKEN_SECRET)

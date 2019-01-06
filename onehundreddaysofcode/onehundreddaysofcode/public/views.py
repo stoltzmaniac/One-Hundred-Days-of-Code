@@ -2,7 +2,7 @@
 import json
 
 """Public section, including homepage and signup."""
-from flask import Blueprint, flash, redirect, render_template, request, url_for, jsonify
+from flask import Blueprint, flash, redirect, render_template, request, url_for, jsonify, session
 from flask_login import login_required, login_user, logout_user
 
 from onehundreddaysofcode.extensions import csrf_protect
@@ -11,7 +11,9 @@ from onehundreddaysofcode.extensions import login_manager
 from onehundreddaysofcode.public.forms import LoginForm
 from onehundreddaysofcode.user.forms import RegisterForm
 from onehundreddaysofcode.user.models import User
-from onehundreddaysofcode.utils import flash_errors
+from onehundreddaysofcode.utils import flash_errors, twtr
+from onehundreddaysofcode.public.mongo_forms import RandomForm
+from onehundreddaysofcode.public.mongo_models import RandomData
 
 blueprint = Blueprint("public", __name__, static_folder="../static")
 
@@ -72,15 +74,20 @@ def about():
     return render_template("public/about.html", form=form)
 
 
-@csrf_protect.exempt
-@blueprint.route("/mongo", methods=["GET", "POST"])
-def mongo():
-    """Testing mongo"""
-    if request.method == "GET":
-        data = mdb.db.songs.find_one({"name": "hello"})
-        return jsonify(data), 200
+@blueprint.route("/add_random_data", methods=["GET", "POST"])
+@login_required
+def add_random_data():
+    """This is just an example of how you can add random data using mongoengine"""
+    form = RandomForm(request.form)
+    # Handle logging in
     if request.method == "POST":
-        data = request.data
-        d = json.loads(data.decode('utf-8'))
-        mdb.db.songs.insert_one(d)
-        return jsonify({'ok': True, 'message': 'Song created successfully!'}), 200
+        if form.validate_on_submit():
+            form_data = request.form
+            random_data = RandomData(
+                username=form_data['username'],
+                text=form_data['text'])
+            random_data.save()
+            return jsonify({'yes': 'you did it'})
+        else:
+            flash_errors(form)
+    return render_template("public/add_random_data.html", myform=form)

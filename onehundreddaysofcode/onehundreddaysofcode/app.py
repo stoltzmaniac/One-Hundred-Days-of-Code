@@ -2,7 +2,7 @@
 """The app module, containing the app factory function."""
 from flask import Flask, render_template
 
-from onehundreddaysofcode import commands, public, user
+from onehundreddaysofcode import commands, public, user, twitter
 from onehundreddaysofcode.utils import JSONEncoder
 from onehundreddaysofcode.extensions import (
     bcrypt,
@@ -14,6 +14,7 @@ from onehundreddaysofcode.extensions import (
     migrate,
     webpack,
     mdb,
+    medb,
 )
 
 
@@ -39,6 +40,7 @@ def register_extensions(app):
     cache.init_app(app)
     db.init_app(app)
     mdb.init_app(app)
+    medb.init_app(app)
     csrf_protect.init_app(app)
     login_manager.init_app(app)
     debug_toolbar.init_app(app)
@@ -51,6 +53,7 @@ def register_blueprints(app):
     """Register Flask blueprints."""
     app.register_blueprint(public.views.blueprint)
     app.register_blueprint(user.views.blueprint)
+    app.register_blueprint(twitter.views.blueprint)
     return None
 
 
