@@ -5,4 +5,12 @@
 # One-Hundred-Days-of-Code
 Project for my #100DaysOfCode challenge! See https://www.stoltzmaniac.com for more!
 
-Moved Travis CI and coveralls.io to the top level directory. Must set environment variables to use within Travis.
+Fill all of this in with how to get started: venv, pip, etc.
+
+Show how to run it (ensure env variables are there)
+
+Show how to add your script(s)
+
+Show how to do a pull request and what your code should look like
+
+
