@@ -26,9 +26,17 @@
     </form>
 
     {% if chart_data %}
-        <strong>Sentiment of tweets above:</strong>
+        <strong>Sentiment of tweets:</strong>
 
         {{ chart_data }}
+
+        <br/>
+
+        <ul>
+            {% for tweet in tweets %}
+                <li>{{ tweet }}</li>
+            {% endfor %}
+        </ul>
 
     {% endif %}
 

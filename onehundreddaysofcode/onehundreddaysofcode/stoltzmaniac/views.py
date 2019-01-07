@@ -37,15 +37,18 @@ def twitter_sentiment():
     form = TwitterForm(request.form)
     if request.method == "GET":
         return render_template(
-            "stoltzmaniac/twitter_sentiment.html", myform=form, chart_data={}
+            "stoltzmaniac/twitter_sentiment.html", myform=form
         )
 
     elif request.method == "POST" and form.validate_on_submit():
         chart_data = []
         data = twitter_search(request)
+        tweets = [i['text'] for i in data]
+        print(tweets)
         sentiment = analyze_tweet_sentiment(data)
         return render_template(
-            "stoltzmaniac/twitter_sentiment.html", myform=form, chart_data=sentiment
+            "stoltzmaniac/twitter_sentiment.html", myform=form,
+            chart_data=sentiment, tweets=tweets
         )
 
 
