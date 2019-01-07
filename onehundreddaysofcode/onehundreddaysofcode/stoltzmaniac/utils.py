@@ -2,6 +2,7 @@ import re
 
 from textblob import TextBlob
 import pandas as pd
+import altair as alt
 
 
 def clean_tweet(raw_tweet_text: str):
@@ -33,3 +34,15 @@ def analyze_csv() -> pd.DataFrame:
     url = "http://samplecsvs.s3.amazonaws.com/SacramentocrimeJanuary2006.csv"
     data = pd.read_csv(url)
     return data
+
+
+def altair_plot():
+    data = analyze_csv()[0:1000]
+    base = alt.Chart(data)
+
+    bar = base.mark_bar().encode(
+        x=alt.X('latitude', bin=True, axis=None),
+        y='count()'
+    )
+
+    return bar

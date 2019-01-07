@@ -17,7 +17,7 @@ from onehundreddaysofcode.database import mdb
 from onehundreddaysofcode.utils import flash_errors, twtr
 from onehundreddaysofcode.twitter.mongo_forms import TwitterForm
 from onehundreddaysofcode.twitter.utils import twitter_search
-from onehundreddaysofcode.stoltzmaniac.utils import analyze_tweet_sentiment, analyze_csv
+from onehundreddaysofcode.stoltzmaniac.utils import analyze_tweet_sentiment, analyze_csv, altair_plot
 
 
 blueprint = Blueprint(
@@ -48,8 +48,16 @@ def twitter_sentiment():
             "stoltzmaniac/twitter_sentiment.html", myform=form, chart_data=sentiment
         )
 
+
 @blueprint.route("/csv_example", methods=["GET"])
 @login_required
 def csv_example():
     data = analyze_csv()
     return data.to_html()
+
+
+@blueprint.route("/altair_example", methods=["GET"])
+@login_required
+def altair_example():
+    plot = altair_plot()
+    return render_template("stoltzmaniac/altair_plot.html", plot=plot.to_html())
