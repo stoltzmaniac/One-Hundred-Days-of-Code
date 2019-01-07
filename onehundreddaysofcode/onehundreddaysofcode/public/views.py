@@ -2,7 +2,16 @@
 import json
 
 """Public section, including homepage and signup."""
-from flask import Blueprint, flash, redirect, render_template, request, url_for, jsonify, session
+from flask import (
+    Blueprint,
+    flash,
+    redirect,
+    render_template,
+    request,
+    url_for,
+    jsonify,
+    session,
+)
 from flask_login import login_required, login_user, logout_user
 
 from onehundreddaysofcode.extensions import csrf_protect
@@ -84,10 +93,10 @@ def add_random_data():
         if form.validate_on_submit():
             form_data = request.form
             random_data = RandomData(
-                username=form_data['username'],
-                text=form_data['text'])
+                username=form_data["username"], text=form_data["text"]
+            )
             random_data.save()
-            return jsonify({'yes': 'you did it'})
+            return jsonify({"yes": "you did it"})
         else:
             flash_errors(form)
     return render_template("public/add_random_data.html", myform=form)
