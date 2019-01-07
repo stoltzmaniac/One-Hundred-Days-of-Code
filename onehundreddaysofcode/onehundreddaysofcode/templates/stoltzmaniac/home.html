@@ -10,9 +10,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.12/c3.js"></script>
 
 <div class="container">
-
-    <h5><a class="nav-link" href="{{ url_for('stoltzmaniac.twitter_sentiment') }}">Twitter Sentiment</a></h5>
-
+    <h2>Stoltzmaniac Examples</h2>
+    <ul>
+        <li>
+            <a class="nav-link" href="{{ url_for('stoltzmaniac.twitter_sentiment') }}">Twitter Sentiment</a>
+        </li>
+        <li>
+            <a class="nav-link" href="{{ url_for('stoltzmaniac.csv_example') }}">Download and display CSV table</a>
+        </li>
+        <li>
+            <a class="nav-link" href="{{ url_for('stoltzmaniac.altair_example') }}">Download CSV embed Plot in Page</a>
+        </li>
+    </ul>
 </div>
 {% endblock %}
 

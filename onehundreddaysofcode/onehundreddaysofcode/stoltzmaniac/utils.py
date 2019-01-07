@@ -33,11 +33,11 @@ def analyze_tweet_sentiment(tweet_list: list) -> dict:
 def analyze_csv() -> pd.DataFrame:
     url = "http://samplecsvs.s3.amazonaws.com/SacramentocrimeJanuary2006.csv"
     data = pd.read_csv(url)
-    return data
+    return data[0:1000]
 
 
 def altair_plot():
-    data = analyze_csv()[0:1000]
+    data = analyze_csv()
     base = alt.Chart(data)
 
     bar = base.mark_bar().encode(
