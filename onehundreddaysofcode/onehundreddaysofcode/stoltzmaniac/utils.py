@@ -16,18 +16,24 @@ def clean_tweet(raw_tweet_text: str):
     )
 
 
-def analyze_tweet_sentiment(tweet_list: list) -> dict:
+def analyze_tweet_sentiment(tweet_list: list) -> list:
+    tweet_sentiment = []
     positive = neutral = negative = 0
     for tweet in tweet_list:
+        twt = {}
         analysis = TextBlob(clean_tweet(tweet["text"]))
         if analysis.sentiment.polarity > 0:
+            twt['positive'] = tweet['text']
             positive += 1
         elif analysis.sentiment.polarity == 0:
+            twt['neutral'] = tweet['text']
             neutral += 1
         else:
+            twt['negative'] = tweet['text']
             negative += 1
-    sentiment = {"positive": positive, "neutral": neutral, "negative": negative}
-    return sentiment
+        tweet_sentiment.append(twt)
+    total_sentiment = {"positive": positive, "neutral": neutral, "negative": negative}
+    return [tweet_sentiment, total_sentiment]
 
 
 def analyze_csv() -> pd.DataFrame:
