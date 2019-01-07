@@ -25,10 +25,24 @@ blueprint = Blueprint(
 )
 
 
-@blueprint.route("/", methods=["GET"])
+@blueprint.route("/")
 @login_required
 def home():
     return render_template("stoltzmaniac/home.html")
+
+
+@blueprint.route("/csv_example")
+@login_required
+def csv_example():
+    data = analyze_csv()
+    return data.to_html()
+
+
+@blueprint.route("/altair_example")
+@login_required
+def altair_example():
+    plot = altair_plot()
+    return render_template("stoltzmaniac/altair_plot.html", plot=plot.to_html())
 
 
 @blueprint.route("/twitter", methods=["GET", "POST"])
@@ -49,16 +63,3 @@ def twitter_sentiment():
             chart_data=sentiment[1], tweets=sentiment[0]
         )
 
-
-@blueprint.route("/csv_example", methods=["GET"])
-@login_required
-def csv_example():
-    data = analyze_csv()
-    return data.to_html()
-
-
-@blueprint.route("/altair_example", methods=["GET"])
-@login_required
-def altair_example():
-    plot = altair_plot()
-    return render_template("stoltzmaniac/altair_plot.html", plot=plot.to_html())
