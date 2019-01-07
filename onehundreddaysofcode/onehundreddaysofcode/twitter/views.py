@@ -11,6 +11,7 @@ from flask_login import login_required
 from onehundreddaysofcode.database import mdb
 from onehundreddaysofcode.utils import flash_errors, twtr
 from onehundreddaysofcode.twitter.mongo_forms import TwitterForm
+from onehundreddaysofcode.twitter.utils import twitter_search
 
 
 blueprint = Blueprint("twitter", __name__, url_prefix="/twitter", static_folder="../static")
@@ -56,14 +57,10 @@ def twitter():
                                chart_dates=chart_dates, chart_tweets=chart_tweets)
 
     elif request.method == "POST" and form.validate_on_submit():
-        form_data = request.form
-        search_query = f"q={quote_plus(form_data['search_term'])}&count={str(form_data['count'])}"
-        results = twtr.GetSearch(raw_query=search_query)
-        for r in results:
-            rd = r.AsDict()
-            rd['timestamp'] = time.strftime('%Y-%m-%d %H:%M:%S', time.strptime(rd['created_at'],'%a %b %d %H:%M:%S +0000 %Y'))
-            rd['one_hundred_id'] = user_id
-            tweets.insert_one(rd)
+        data = twitter_search(request)
+        for d in data:
+            d['one_hundred_id'] = user_id
+            tweets.insert_one(d)
         return redirect(url_for("twitter.twitter"))
 
     else:

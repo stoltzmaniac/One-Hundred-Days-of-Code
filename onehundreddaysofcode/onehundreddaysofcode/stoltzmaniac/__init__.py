@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
-"""The data_science module"""
+"""The stoltzmaniac module"""
 from . import views  # noqa
