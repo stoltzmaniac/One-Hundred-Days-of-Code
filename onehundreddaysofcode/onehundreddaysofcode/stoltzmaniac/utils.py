@@ -1,6 +1,7 @@
 import re
 
 from textblob import TextBlob
+import pandas as pd
 
 
 def clean_tweet(raw_tweet_text: str):
@@ -26,3 +27,9 @@ def analyze_tweet_sentiment(tweet_list: list) -> dict:
             negative += 1
     sentiment = {"positive": positive, "neutral": neutral, "negative": negative}
     return sentiment
+
+
+def analyze_csv() -> pd.DataFrame:
+    url = "http://samplecsvs.s3.amazonaws.com/SacramentocrimeJanuary2006.csv"
+    data = pd.read_csv(url)
+    return data

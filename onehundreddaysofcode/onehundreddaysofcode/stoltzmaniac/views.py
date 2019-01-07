@@ -17,7 +17,7 @@ from onehundreddaysofcode.database import mdb
 from onehundreddaysofcode.utils import flash_errors, twtr
 from onehundreddaysofcode.twitter.mongo_forms import TwitterForm
 from onehundreddaysofcode.twitter.utils import twitter_search
-from onehundreddaysofcode.stoltzmaniac.utils import analyze_tweet_sentiment
+from onehundreddaysofcode.stoltzmaniac.utils import analyze_tweet_sentiment, analyze_csv
 
 
 blueprint = Blueprint(
@@ -47,3 +47,9 @@ def twitter_sentiment():
         return render_template(
             "stoltzmaniac/twitter_sentiment.html", myform=form, chart_data=sentiment
         )
+
+@blueprint.route("/csv_example", methods=["GET"])
+@login_required
+def csv_example():
+    data = analyze_csv()
+    return data.to_html()
