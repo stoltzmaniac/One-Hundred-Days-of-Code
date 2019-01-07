@@ -27,13 +27,13 @@ blueprint = Blueprint(
 
 @blueprint.route("/", methods=["GET"])
 @login_required
-def index():
-    return jsonify({"add": "a stoltzmaniac index page"})
+def home():
+    return render_template("stoltzmaniac/home.html")
 
 
 @blueprint.route("/twitter", methods=["GET", "POST"])
 @login_required
-def stoltzmaniac_twitter():
+def twitter_sentiment():
     form = TwitterForm(request.form)
     if request.method == "GET":
         return render_template(
