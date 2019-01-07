@@ -36,7 +36,7 @@ def analyze_csv() -> pd.DataFrame:
     return data[0:1000]
 
 
-def altair_plot():
+def altair_plot() -> alt.Chart:
     data = analyze_csv()
     base = alt.Chart(data)
 
