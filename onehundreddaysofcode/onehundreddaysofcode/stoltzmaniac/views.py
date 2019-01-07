@@ -8,6 +8,7 @@ from onehundreddaysofcode.database import mdb
 from onehundreddaysofcode.utils import flash_errors, twtr
 from onehundreddaysofcode.twitter.mongo_forms import TwitterForm
 from onehundreddaysofcode.twitter.utils import twitter_search
+from onehundreddaysofcode.stoltzmaniac.utils import analyze_tweet_sentiment
 
 
 blueprint = Blueprint("stoltzmaniac", __name__, url_prefix="/stoltzmaniac", static_folder="../static")
@@ -22,20 +23,18 @@ def index():
 @blueprint.route("/twitter", methods=["GET", "POST"])
 @login_required
 def stoltzmaniac_twitter():
-    chart_data = []
     form = TwitterForm(request.form)
-
     if request.method == "GET":
         return render_template("stoltzmaniac/twitter_sentiment.html",
                                myform=form,
-                               chart_data=chart_data)
+                               chart_data={})
 
     elif request.method == "POST" and form.validate_on_submit():
+        chart_data = []
         data = twitter_search(request)
-        for i in data:
-            chart_data.append({'text': i['text']})
+        sentiment = analyze_tweet_sentiment(data)
         return render_template("stoltzmaniac/twitter_sentiment.html",
                                myform=form,
-                               chart_data=chart_data)
+                               chart_data=sentiment)
 
 

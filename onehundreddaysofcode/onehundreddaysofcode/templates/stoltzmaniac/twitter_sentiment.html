@@ -25,32 +25,11 @@
         <p><input class="btn btn-primary" type="submit" value="Submit"></p>
     </form>
 
-    {% if output %}
-        <strong>All historical data you have requested!</strong>
+    {% if chart_data %}
+        <strong>Sentiment of tweets above:</strong>
 
-        <br/>
+        {{ chart_data }}
 
-        <div id="chart"></div>
-
-        <script>
-            var chart = c3.generate({
-                data: {
-                    x: 'Date',
-                    xFormat: '%H',
-                    columns: [
-                        {{ chart_dates | safe }},
-                        {{ chart_tweets | safe }}
-                    ]
-                }
-            });
-        </script>
-
-        <br/>
-        <ul id="tweets">
-            {% for o in output %}
-                <li>{{ o['text'] }}</li>
-            {% endfor %}
-        </ul>
     {% endif %}
 
 

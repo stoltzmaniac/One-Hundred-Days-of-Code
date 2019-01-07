@@ -14,4 +14,5 @@ def twitter_search(request) -> list:
     for r in results:
         d = r.AsDict()
         d['timestamp'] = time.strftime('%Y-%m-%d %H:%M:%S', time.strptime(d['created_at'], '%a %b %d %H:%M:%S +0000 %Y'))
+        data.append(d)
     return data
