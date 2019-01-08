@@ -20,5 +20,6 @@ before_script:
   - npm run build
 script:
   - flask test
+  - pytest --cov=onehundreddaysofcode/
 after_success:
   - coveralls
