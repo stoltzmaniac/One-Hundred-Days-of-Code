@@ -19,7 +19,7 @@ def test():
     """Run the tests."""
     import pytest
 
-    rv = pytest.main([TEST_PATH, "--verbose"])
+    rv = pytest.main([TEST_PATH, "--verbose --cov"])
     exit(rv)
 
 
