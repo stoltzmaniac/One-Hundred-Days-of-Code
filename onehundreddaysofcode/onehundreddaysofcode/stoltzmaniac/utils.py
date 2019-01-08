@@ -46,6 +46,7 @@ def altair_plot() -> alt.Chart:
     data = analyze_csv()
     base = alt.Chart(data)
 
+    # Build chart
     bar = base.mark_bar().encode(
         x=alt.X('latitude', bin=True, axis=None),
         y='count()'
