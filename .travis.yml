@@ -20,6 +20,8 @@ before_script:
 script:
 - flask test
 - flask coverage
+after_success:
+- coveralls
 deploy:
   provider: heroku
   api_key:
@@ -27,5 +29,3 @@ deploy:
   app: One-Hundred-Days-of-Code
   on:
     repo: stoltzmaniac/One-Hundred-Days-of-Code
-after_success:
-- coveralls
