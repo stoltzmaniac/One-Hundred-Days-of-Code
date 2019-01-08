@@ -1,25 +1,31 @@
-# Config file for automatic testing at travis-ci.org (all env variables set within Travis settings)
-sudo: false  # http://docs.travis-ci.com/user/migrating-from-legacy/
+sudo: false
 language: python
 python:
-  - 3.6
+- 3.6
 services:
-  - postgresql
-  - mongodb
+- postgresql
+- mongodb
 install:
-  - cd onehundreddaysofcode
-  - pip install -r requirements/dev.txt
-  - nvm install 6.10
-  - nvm use 6.10
-  - npm install
+- cd onehundreddaysofcode
+- pip install -r requirements/dev.txt
+- nvm install 6.10
+- nvm use 6.10
+- npm install
 before_script:
-  - black onehundreddaysofcode
-  - cd onehundreddaysofcode
-  - psql -c 'create database onehundreddaysofcode;' -U postgres
-  - npm run lint
-  - npm run build
+- black onehundreddaysofcode
+- cd onehundreddaysofcode
+- psql -c 'create database onehundreddaysofcode;' -U postgres
+- npm run lint
+- npm run build
 script:
-  - flask test
-  - flask coverage
+- flask test
+- flask coverage
+deploy:
+  provider: heroku
+  api_key:
+    secure: Pg6kj7Bb7UnC8f4yn71BYJGCAiyU13A+FTGMPEMDSvqlBdlKuuRlR8WWiv+8+qgQHDQ1NMPWOwleIHQy2CbUe+n1uT65f34LMc14xG7seF9nJarBF/C25o7diULqb24qonBGNB8VG70kOo2N2Ip2O1li9zx4In7tProVRAiA4s+WWzk9rq8FTp9/8J4wJPKxGHbSKlNsnSUrJ2fsr2tH9l8vRIfUopmDgf19GLjqq+WA8renIMNIEm1GgsTeSzZyx+GUnVnuChX47gaRKoFi0kMwWZqaPzOnn3IRdwQyVdwEI00Vp2GNW3ezUPZ7dAtE2iLzjd2OjJ0EM9b/Oe7IgQtotwKS2azfZItpJLEiKUqKdV8i04PZe+/JUUtZvrJEewhFLSSOdWxkO0qVf9Gee+Y7AjBr86vVr8c4SuwWU7cWd4nYBr4mYAFtsqMRhnpY9Rkao3PoygvF2da1k72fYYoGmT35a2oVDoy2Qy0nUe8TWSfQgWRjNJpc+jRowum7nVuJP7AmhW4X4WbUV+87dS+DUIUNtTc4/8K4F4T0L5vKVljH4S8665gcCvT+r9yUdwK/re8g+ElQl1y79ObYbtEUqV4jfI1DOr3+ncQ29x68PbYxeITEEg0md/vYmd9qlK9x5x7iXCzYIMSPi5H1Tf23qRDw9yGrMkOsdJByrJw=
+  app: onehundreddaysofcode
+  on:
+    repo: stoltzmaniac/onehundreddaysofcode
 after_success:
-  - coveralls
+- coveralls
