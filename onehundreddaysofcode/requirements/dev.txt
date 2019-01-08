@@ -14,7 +14,9 @@ cffi==1.11.5
 chardet==3.0.4
 Click==7.0
 cookiecutter==1.6.0
-coverage==4.0.3
+coverage==4.5.2
+coveralls==1.5.1
+docopt==0.6.2
 entrypoints==0.3
 environs==4.0.0
 factory-boy==2.11.1
@@ -66,6 +68,7 @@ pydocstyle==3.0.0
 pyflakes==1.6.0
 pymongo==3.7.2
 pytest==3.7.4
+pytest-cov==2.6.1
 python-coveralls==2.9.1
 python-dateutil==2.7.5
 python-dotenv==0.10.1
