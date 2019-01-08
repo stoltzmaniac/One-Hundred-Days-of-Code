@@ -19,7 +19,16 @@ def test():
     """Run the tests."""
     import pytest
 
-    rv = pytest.main([TEST_PATH, "--verbose --cov"])
+    rv = pytest.main([TEST_PATH, "--verbose"])
+    exit(rv)
+
+
+@click.command()
+def coverage():
+    """Run the tests."""
+    import pytest
+
+    rv = pytest.main([TEST_PATH, "--cov=onehundreddaysofcode"])
     exit(rv)
 
 

@@ -20,5 +20,6 @@ before_script:
   - npm run build
 script:
   - flask test
+  - flask coverage
 after_success:
   - coveralls
