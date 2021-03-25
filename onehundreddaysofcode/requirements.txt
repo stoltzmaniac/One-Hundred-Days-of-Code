@@ -75,7 +75,7 @@ python-dotenv==0.10.1
 python-editor==1.0.3
 python-twitter==3.5
 pytz==2018.7
-PyYAML==3.13
+PyYAML==5.4
 requests==2.21.0
 requests-oauthlib==1.0.0
 selenium==3.141.0
